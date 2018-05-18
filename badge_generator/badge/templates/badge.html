@@ -1,0 +1,209 @@
+<html>
+<head>
+<style>
+  @page {
+    size: 2.125in 3.375in;
+    margin: 0.5pt;
+  }
+
+  @page front {
+  }
+
+  @page back {
+  }
+
+  @font-face {
+		font-family: 'Berthold Akzidenz Grotesk BE Regular';
+		src: url('Berthold-akzidenz-grotesk-be-regular.woff') format('woff');
+	}
+
+  body {
+      font-family: 'Berthold Akzidenz Grotesk BE Regular';
+  }
+
+  .page-border {
+    position: fixed; 
+    left: -0.5pt; 
+    top: -0.5pt; 
+    bottom: -0.5pt; 
+    right: -0.5pt; 
+    border-radius:10pt; 
+    border: 1.5pt solid #fad20a;
+    overflow: hidden;
+  }
+
+  .front  { 
+      page: front;
+  }
+
+  .back  { 
+      page: back;
+  }
+   
+  .left-panel { 
+      width: 30pt;
+      height: 243pt;
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+
+  .left-panel img {
+      height:100%;
+      width:100%;
+      border-radius:10pt 0 0 10pt; 
+  }
+
+  .left-panel h3 {
+      transform: rotate(-90deg);
+      font-size: 12pt;
+      position: absolute;
+      left:-175pt;
+      bottom:185pt;
+      width: 375pt;
+      font-weight:normal;
+      color: #1a1949;
+  }
+
+  .header_content {
+      position:absolute; 
+      left: 30pt; 
+      width: 118pt; 
+      top: 0pt; 
+      height: 70pt;
+  }
+
+  .back .header_content {
+      position:absolute; 
+      left: 0pt; 
+      width: 150pt; 
+      top: 0pt; 
+      height: 70pt;
+  }
+
+  .header_content img{
+      height:70pt;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1pt;
+  }
+
+  .footer_content {
+      text-align: center; 
+      color: #231f20; 
+      font-size: 8pt;
+      position: absolute;
+      left: 30pt; 
+      width: 118pt; 
+      top: 224pt; 
+      height: 12pt;
+  }
+
+  .back .footer_content {
+      left: 0pt; 
+      width: 152pt; 
+      top: 212pt;
+      height: 30pt;
+      border-radius: 0pt 0pt 10pt 10pt;
+      background-color: #231f20;
+  }
+
+  .content {
+      position:absolute; 
+      left: 30pt; 
+      top: 60pt; 
+      width: 118pt; 
+      height: 160pt;
+      text-align: center;
+      padding-top: 20pt;
+  }
+
+  .back .content {
+    top:60pt;
+    left: 5pt;
+    font-size: 5.5pt;
+    width: 140pt;
+    padding: 5pt 1pt 5pt 1pt;
+  }
+
+  .qr_code img{
+    height: 36pt;
+  }
+
+  .content h3 {
+      color: #1a1949;
+      font-size: 10pt;
+      font-family: 'Helvetica';
+      line-height: 3pt;
+      font-weight: 600;
+  }
+
+  .content hr{
+      background: #1a1949;
+      width: 100pt;
+      height: 0.2pt;
+      border: none;
+  }
+
+  .content #photo img{
+      width: 75pt;
+      height: 75pt;
+      border-radius: 50%;
+      border: 2px solid #fad20a;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 15pt;
+  }
+  
+
+</style>
+</head>
+  <body>
+    <div class="page-border"></div>
+    <section class="front">
+      <div class="left-panel">
+          {% load static %}
+          <img src="{% static '/images/pattern.jpg' %}">
+        <h3>EMPLOYEE ID CARD</h3>
+      </div>
+
+      <div class="header_content">
+          <img src="{% static '/images/logo.jpg' %}"/>
+      </div>
+
+      <div class="footer_content">twigafoods.com</div>
+
+      <div class="content">
+          <div id="photo">
+              {% block content %}
+              <img src="{{ photo.url }}">
+              {% endblock %}
+              <!--<img src="{% static '/images/picture.jpg' %}"/>-->
+          </div>
+          <h3>{{employee_name}}</h3>
+          <hr/>
+          <h3>{{id_no}}</h3>
+      </div>
+    </section>
+
+    <section class="back">
+        <div class="header_content">
+            <img src="{% static '/images/logo.jpg' %}"/>
+        </div>
+        <div class="content"> 
+            <p>This card is the property of Twiga Foods Limited.<br>If found return by mail; postage guaranteed</p>
+            <p>Return lost cards to <br>TWIGA FOODS LIMITED <br>P.O Box 20022-0020- Nairobi, Kenya <br>or info@twigafoods.com</p>
+            <br/>
+            <br/>
+            <div class="qr_code">
+                <img src="{% static '/images/qr_code.jpg' %}"/>
+            </div>
+            <footer>twigafoods.com</footer>
+            <p>Exp. {{expiry_date | date:"M d, Y" }}</p>
+        </div>
+        <div class="footer_content"></div>
+    </section>
+</body>
+</html>

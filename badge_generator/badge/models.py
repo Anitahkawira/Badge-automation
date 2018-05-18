@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 # Create your models here.
 class Employee(models.Model):
@@ -7,7 +8,7 @@ class Employee(models.Model):
     other_names = models.CharField(max_length=100)
     position = models.CharField(max_length=50)
     id_no = models.CharField(max_length=20, unique=True)
-    photo = models.FileField(upload_to='photos')
+    photo = models.ImageField(upload_to='photos')
 
     def __str__ (self):
         return self.other_names + ' ' + self.surname

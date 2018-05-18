@@ -130,25 +130,25 @@
   </head>
 
   <body>
-  <div class="containter">
+  <div class="containter" style="	background: #fff; width: 672px; height: 1042px; position: relative; /* padding-left: 132px; */ border-radius: 15px; border: 2px solid #fad20a;">
 
-    <div class="left-panel" style="width: 132px;height: 100%;position: absolute;top: 0;left: 0;">
-      <div class="pattern">
-        <img src="../static/images/pattern.png"/>
+    <div class="left-panel" style="width: 132px; height: 100%; position: absolute; top: 0; left: 0;">
+      <div class="pattern" style="position: fixed; width: 132px;">
+        <img src="d:/badge-automation/badge_generator/badge/static/images/pattern.png"/>
       </div>
-      <h3>Employee ID Card</h3>
+      <h3 style="transform: rotate(-90deg); position: absolute; bottom: 250px; font-size: 45px; left: -180px; margin: 0; display: block; width: 500px; text-transform: uppercase; color: #1a1949;">Employee ID Card</h3>
     </div>
-    <div class="content-area">
-      <div class="logo">
-        <img alt="" src="../static/images/logo.jpg" />
+    <div class="content-area" style="width: 120%; padding: 50px 30px; box-sizing: border-box;">
+      <div class="logo" style="width: 300px; margin: 0 auto; text-align: center;">
+        <img alt="" src="d:/badge-automation/badge_generator/badge/static/images/logo.png" style="width: 100%; height: auto;"/>
       </div>
-      <div class="profile-picture">
-        <img alt="" src="../static/images/picture.jpg" />
+      <div class="profile-picture" style="width: 330px; height: 330px; border-radius: 50%; border: 2px solid #fad20a; margin-top: 20px; margin-left: 200px; text-align: center;">
+        <!-- <img alt="" src="d:/badge-automation/badge_generator/badge/static/images/picture.jpg" /> -->
       </div>
-      <h2 style="text-align: center;font-size: 40px;color: #1a1949;">{{employee_name}}</h2>
-      <hr>
-      <h3> ID NO. {{id_no}}</h3>
-      <footer>twigafoods.com</footer>
+      <h2 style="text-align: center; font-size: 40px; color: #1a1949;">{{employee_name}}</h2>
+      <hr style="background-color:#1a1949; width: 300px; height: 2px; border-style: none;">
+      <h3 style="text-align:center; font-size: 30px; color: #1a1949;">ID NO. {{id_no}}</h3>
+      <footer style="text-align: center; color: #231f20; font-size: 20px; margin-top: 50px;">twigafoods.com</footer>
     </div>
   </div>
 

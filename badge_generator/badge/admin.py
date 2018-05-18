@@ -2,13 +2,12 @@ from django.contrib.auth.models import Group
 from django.utils.html import format_html
 from django.contrib import admin
 
+from .utils import download_pdf, render_to_pdf
+from .models import Employee
+from datetime import datetime, timedelta
+
 admin.site.disable_action('delete_selected')
 admin.site.unregister(Group)
-
-
-from .utils import download_pdf
-
-from .models import Employee
 
 # Register your models here.
 @admin.register(Employee)
@@ -41,14 +40,17 @@ class EmployeeAdmin(admin.ModelAdmin):
     custom_actions.short_description = 'Actions'
     custom_actions.allow_tags = True
 
-    def download_card(self, request, queryset):
-        data = {
-            "employee_name": "Maalim Shee",
-            "id_no": "22509856",
-            "position": "Line Manager"
-        }
-        file = download_pdf('badge_front.html', data)
-        #file = convert_hmtl_to_pdf()
-        return file
+    def download_card(self, request, queryset):      
+        for info in queryset:
+            data = {
+                "employee_name": info.other_names + ' ' + info.surname,
+                "id_no": info.id_no,
+                "position": info.position,
+                "photo": info.photo,
+                "expiry_date" : datetime.now()+timedelta(days=365)
+            }
+            file = download_pdf(data, request)
+            return file
+        
     
     download_card.short_description = 'Download card for selected employees' 

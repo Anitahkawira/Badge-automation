@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/twigafoods/badge-automation/env"
+set -gx VIRTUAL_ENV "/media/anitah/84A0B4C4A0B4BDCC/Users/Anitah/Documents/badge-automation/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

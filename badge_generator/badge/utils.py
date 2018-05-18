@@ -4,12 +4,10 @@ from django.template.loader import get_template
 from django.http import HttpResponse
 from django.template import Context
 from django.shortcuts import render
+from badge_generator import settings
 
 import qrcode
-from xhtml2pdf import pisa
-
-import pdfkit
-import os
+from weasyprint import HTML, CSS
 
 from .models import Employee
 
@@ -33,58 +31,19 @@ def generate_qr_code(self, Employee):
     img = qr.make_image(fill_color="black", back_color="white")
 
     return img
-
-
-def render_to_pdf(template_name, data):
-    template = get_template(template_name)
-    html = template.render(data)
-
-    result = BytesIO()
-    pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    response = HttpResponse(result.getvalue(), content_type='application/pdf')
-
-    return response
-        
     
-def download_pdf(template_name, data):
-    response = render_to_pdf(template_name, data)
+    
+def download_pdf(data, request):
+    response = render_to_pdf(data, request)
     filename = data["employee_name"]
     response['Content-Disposition'] = 'attachment; filename={}.pdf'.format(filename)
     return response
-'''   
-def convert_hmtl_to_pdf():
-    #context = Context({"data": "data"})
 
-    context = {
-            "invoice_id": 123,
-            "customer_name": "John Cooper",
-            "amount": 1399.99,
-            "today": "Today",
-        }
-
-    options = {
-        'quiet': ''
-    }
-    
-    #template = get_template(template_name)
-    template = get_template('badge_back.html')
-
-    #render template with the context data
-    html = template.render(context)
-    pdfkit.from_string(html, 'out.pdf', options=options)
-    
-    file = open('out.pdf')
-
-    #generate response as pdf response
-    response = HttpResponse(file.read(), content_type='application/pdf')
-
-    filename = "y"
-
-    response['Content-Disposition'] = 'attachment; filename={}.pdf'.format(filename)
-
-    file.close()
-
-    os.remove('out.pdf')
-
+def render_to_pdf(data, request):
+    template = get_template('badge.html')
+    html = template.render(data)
+    pdf_file = HTML(string=html,  base_url=request.build_absolute_uri()).write_pdf()
+    response = HttpResponse(pdf_file, content_type='application/pdf')
     return response
-    '''
+
+
