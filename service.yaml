@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: badge-automation-service
+  labels:
+    app: badge-automation-service
+spec:
+  selector:
+    app: badge-automation-service
+  ports: 
+  - name: http
+    protocol: TCP
+    port: 8080
+  - name: rpc
+    protocol: TCP
+    port: 3000

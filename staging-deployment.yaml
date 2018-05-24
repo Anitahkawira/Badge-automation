@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: badge-automation-service-staging
+  namespace: default
+  labels:
+    #Project ID
+    app: badge-automation-service
+spec:
+  #Run one instance of our application
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: badge-automation-service
+    spec:
+      #Container details
+      containers:
+        - name: badge-automation-service-app
+          image: gcr.io/twigadms/badge-automation-service-staging:latest    
+          imagePullPolicy: Always
+          #Ports to expose
+          ports:
+          - containerPort: 8080

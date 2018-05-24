@@ -1,0 +1,21 @@
+version: "2"
+services:
+  badge-automation:
+    container_name: badge-automation-service
+    image: twigafoods/badge-automation-service:dev
+    ports:
+        - "8080:8080"
+    environment:
+        REDIS_HOST: "redis"
+        REDIS_PORT: "6379"
+        REDIS_INDEX: "11"
+        DB_PASSWORD: "password"
+        DB_USER: "postgres"
+        DB_HOST: "postgres"
+        DB_NAME: "badge-automation"
+        DB_PORT: "5432"
+        RABBIT_PASSWORD: "guest"
+        RABBIT_USER: "guest"
+        RABBIT_HOST: "rabbit"
+        RABBIT_PORT: "5672"
+        RABBIT_MANAGEMENT_PORT: "15672"
