@@ -1,11 +1,48 @@
+<!-- {% block main %}
+  <div class="container login_main_container" style="width: 100%;">
+    <div>  
+      <div class="login_container" style="position: relative; width: 100%; max-width: 800px; margin: auto; background-color: #fff; box-shadow: 1px 2px 17px 1px rgba(0,0,0,0.1); border-radius: 5px;">
+          <div class="half-col login_section">
+            <div class="logo" style="padding-bottom: 40px;">
+              <img src="../../static/images/logo.png" alt="Twiga Logo" style="width: 100%; max-width: 96px; height: auto;">
+            </div>
+            <p class="prompt" style="color: #4A4A4A; font-weight: bold; margin: 0; padding: 8px 0 20px 0;">Please log in below to proceed</p>
+            <div class="google_login_btn" style="background-color: #211651; border-radius: 5px; position: relative; text-align: left; width: 100%; max-width: 190px; margin: 0 auto 0 auto; transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                <a href="{{auth_url}}" role="button" title="Click to Login" style="color: white; text-decoration: none;">
+                  <span class="g_btn" style="background-color: white; display: inline-block; width: 38px; text-align: center; padding: 8px;"><img src="../../static/images/g-btn.svg" alt="" style="transition: cubic-bezier(0.175, 0.886, 0.32, 1.275); transform: scale(1); width: 18px; height: auto;"></span>
+                  <span class="login_text" style="padding:10px 10px 10px 5px; display: inline-block; width: calc(100% - 45px); text-align: center; transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);">Sign in with Google</span>
+                </a>
+            </div>
+          </div>
+          <div class="half-col slider_section" style="padding: 40px 10px; text-align: center; ">
+            <div class="inner-content">
+              <h3>Africa’s Food Market Place</h3>
+              <div class="slider_nav">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <p class="footer-creds">&copy; {{ current_year }} Twiga Foods Ltd</p>
+    </div>
+  </div>
+{% endblock %} -->
+
+
+
+
 {% load socialaccount %}
 
-<h1>Django Login Mega-Tutorial</h1>
 {% if user.is_authenticated %}
-<p>Welcome {{ user.username }} !!!</p>
-<p><a href="{% url 'account_logout' %}">Log out</a>
+<h1>Welcome {{ user.username }} !!!</h1>
+
 {% else %}
-<p><a href="{% url 'account_signup' %}">Sign Up</a></p>
-<p><a href="{% url 'account_login' %}">Log In </a></p>
-<p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+
+<div class="google_login_btn" style="background-color: #211651; border-radius: 5px; position: relative; text-align: left; width: 100%; max-width: 190px; margin: 0 auto 0 auto; transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+    <span class="g_btn" style="background-color: white; display: inline-block; width: 38px; text-align: center; padding: 8px;"><img src="../../static/images/g-btn.svg" alt="" style="transition: cubic-bezier(0.175, 0.886, 0.32, 1.275); transform: scale(1); width: 18px; height: auto;"></span>
+    <a href="{% provider_login_url 'google' %}">Log In with Gmail</a>
+</div>
+
 {% endif %}
